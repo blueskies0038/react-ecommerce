@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { auth } from '../../firebase/firebase.utils'
 import './Header.scss'
 
-const Header = () => (
+const Header = ({currentUser}) => (
     <div className="header">
         <Link className="logo">
             TattleTale
@@ -17,9 +18,12 @@ const Header = () => (
             <Link className="nav-link" to="/contact">
                 Contact
             </Link>
-            <Link className="nav-link" to="/sign-in">
-                Sign In
-            </Link>
+            {
+                currentUser ?
+                <div className="nav-link" onClick={() => auth.signOut()}>Sign Out</div>
+                :
+                <Link className="nav-link" to="/sign-in">Sign In</Link>
+            }
         </div>
         <Link>
         

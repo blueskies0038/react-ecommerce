@@ -11,6 +11,7 @@
     top: 0;
     left: 0;
     background-color: purple;
+    z-index: 999;
     
   
     .logo {
@@ -32,6 +33,7 @@
         padding: 0 15px;
         text-decoration: none;
         color: white;
+        cursor: pointer;
       }
     }
   }
