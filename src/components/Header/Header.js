@@ -1,13 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { auth } from '../../firebase/firebase.utils'
+import BagIcon from '../BagIcon/BagIcon'
+import BagDropdown from '../BagDropdown/BagDropdown'
 import './Header.scss'
 
-const Header = ({currentUser}) => (
+
+const Header = ({currentUser, hidden}) => (
     <div className="header">
-        <Link className="logo">
+        <Link className="logo" to="/">
             TattleTale
         </Link>
+        <BagIcon />
         <div className="nav">
             <Link className="nav-link" to="/shop">
                 Shop
@@ -25,10 +30,17 @@ const Header = ({currentUser}) => (
                 <Link className="nav-link" to="/sign-in">Sign In</Link>
             }
         </div>
-        <Link>
-        
-        </Link>
+        {hidden ? null :
+            <BagDropdown />
+        }
     </div>
 )
 
-export default Header
+// Gets the value of currentUser and hidden
+const mapStateToProps = ({user: {currentUser}, bag: {hidden}}) => ({
+    currentUser,
+    hidden
+})
+
+// Passes currentUser to the Header
+export default connect(mapStateToProps)(Header)

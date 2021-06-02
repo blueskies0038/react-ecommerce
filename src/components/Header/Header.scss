@@ -6,20 +6,21 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 25px;
-    padding: 10px 0;
+    padding: 5px 0;
     position: sticky;
     top: 0;
     left: 0;
     background-color: purple;
+    color: white;
     z-index: 999;
-    
   
     .logo {
       height: 100%;
-      width: 70px;
+      display: block;
       text-decoration: none;
       color: white;
       font-weight: 700;
+      font-size: 36px;
     }
   
     .nav {
