@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     currentUser: null
 }
 
-// Updates the state depending on the action
+// Updates the state of user depending on the action
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case UserActionTypes.SET_CURRENT_USER:

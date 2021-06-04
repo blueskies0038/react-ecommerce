@@ -1,9 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { createStructuredSelector } from 'reselect'
 import { connect } from 'react-redux'
 import { auth } from '../../firebase/firebase.utils'
 import BagIcon from '../BagIcon/BagIcon'
 import BagDropdown from '../BagDropdown/BagDropdown'
+import { selectCurrentUser } from '../../redux/user/user.selectors'
+import { selectBagHidden } from '../../redux/bag/bag.selectors'
+
+
 import './Header.scss'
 
 
@@ -37,9 +42,9 @@ const Header = ({currentUser, hidden}) => (
 )
 
 // Gets the value of currentUser and hidden
-const mapStateToProps = ({user: {currentUser}, bag: {hidden}}) => ({
-    currentUser,
-    hidden
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectBagHidden
 })
 
 // Passes currentUser to the Header
