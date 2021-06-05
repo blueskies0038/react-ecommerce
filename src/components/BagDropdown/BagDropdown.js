@@ -1,20 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { createStructuredSelector } from 'reselect'
+import { toggleBagHidden } from '../../redux/bag/bag.actions'
 import { selectBagItems, selectBagItemsCount } from '../../redux/bag/bag.selectors'
+
 import BagItem from '../BagItem/BagItem'
 import Button from '../Button/Button'
 import './BagDropdown.scss'
 
-const BagDropdown = ({bagItems, itemCount}) => (
+
+const BagDropdown = ({bagItems, itemCount, history, dispatch}) => (
     <div className="bag-dropdown">
         <div className="bag-items">
-            {bagItems.map(bagItem =>
+            {bagItems.length ? (
+                bagItems.map(bagItem =>
                 <BagItem key={bagItem.id} item={bagItem} />
+            )) : (
+                <span className="empty-message">Your bag is empty</span>
             )}
         </div>
         <span className="bag-count">{itemCount}</span>
-        <Button>Checkout</Button>
+        <Button onClick={() => {
+            history.push('/checkout');
+            dispatch(toggleBagHidden());
+            }}>Checkout</Button>
     </div>
 )
 
@@ -24,4 +34,4 @@ const mapStateToProps = createStructuredSelector({
     itemCount: selectBagItemsCount
 })
 
-export default connect(mapStateToProps)(BagDropdown)
+export default withRouter(connect(mapStateToProps)(BagDropdown))

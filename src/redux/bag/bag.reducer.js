@@ -20,6 +20,13 @@ const bagReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 bagItems: addItemToBag(state.bagItems, action.payload)
             }
+        case BagActionTypes.CLEAR_ITEM_FROM_BAG:
+            return {
+                ...state,
+                bagItems: state.bagItems.filter(
+                    bagItem => bagItem.id !== action.payload.id
+                )
+            }
         default:
             return state
     }

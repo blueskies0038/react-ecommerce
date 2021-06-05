@@ -20,3 +20,10 @@ export const selectBagItemsCount = createSelector(
         (accumulatedQuantity, bagItem) => accumulatedQuantity + bagItem.quantity, 0
     )
 )
+
+export const selectBagTotal = createSelector(
+    [selectBagItems],
+    (bagItems) => bagItems.reduce(
+        (accumulatedQuantity, bagItem) => accumulatedQuantity + bagItem.quantity * bagItem.price, 0
+    )
+)
